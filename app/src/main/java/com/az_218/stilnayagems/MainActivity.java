@@ -1,12 +1,12 @@
 package com.az_218.stilnayagems;
 
-import androidx.annotation.Dimension;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -20,6 +20,28 @@ public class MainActivity extends AppCompatActivity {
         preStorageGeneration(this);
         preGeneration();
         setContentView(draw);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            default:
+                return false;
+            case MotionEvent.ACTION_DOWN:
+                isTouch = true;
+                dPos = new int[]{(int) event.getX(), (int) event.getY()};
+                return true;
+            case MotionEvent.ACTION_UP:
+                isTouch = false;
+                return true;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                mPos = new int[]{(int) event.getX(), (int) event.getY()};
+                return true;
+            case MotionEvent.ACTION_CANCEL:
+                return true;
+        }
     }
 
     @Override

@@ -1,9 +1,8 @@
 package com.az_218.stilnayagems;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
@@ -33,18 +32,15 @@ public class DrawCenter extends View {
     void drawGemstone(Canvas c, int size) {
         for (int x = 0; x < gems[0].length; x++) {
             for (int y = 0; y < gems[1].length; y++) {
-                c.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), gems[x][y].image), size, size, false),
-                        screenBounds + size * x,
-                        screenSpaceForGem + size * y, null);
+                gems[x][y].draw(c);
             }
         }
     }
 
     void drawPull(Canvas c, int size) {
-        Bitmap b = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.gem_pull), size, size, false);
         for (int x = 0; x < gems[0].length; x++) {
             for (int y = 0; y < gems[1].length; y++) {
-                c.drawBitmap(b,
+                c.drawBitmap(images.get("gem_pull"),
                         screenBounds + size * x,
                         screenSpaceForGem + size * y, null);
             }
@@ -62,6 +58,10 @@ public class DrawCenter extends View {
         p.setStyle(Paint.Style.FILL);
         p.setColor(ContextCompat.getColor(getContext(), R.color.light));
         c.drawPaint(p);
+        p.setColor(Color.argb(50, 0, 0, 0));
+        if (isTouch) c.drawCircle(mPos[0], mPos[1], pullSize / 2, p);
+        p.setColor(Color.argb(25, 0, 0, 0));
+        c.drawCircle(dPos[0], dPos[1], pullSize / 2, p);
 
     }
 
@@ -70,8 +70,9 @@ public class DrawCenter extends View {
         myTimer.schedule(new TimerTask() {
             @Override
             public void run() {
+                if (selectedPullCount > 2) selectedPullCount = 0;
                 invalidate();
             }
-        }, 0, 200);
+        }, 0, 25);
     }
 }
