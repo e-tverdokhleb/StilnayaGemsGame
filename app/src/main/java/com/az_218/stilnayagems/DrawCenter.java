@@ -54,14 +54,11 @@ public class DrawCenter extends View {
     }*/
 
     void clearScreen(Canvas c) {
-        Paint p = new Paint();
-        p.setStyle(Paint.Style.FILL);
-        p.setColor(ContextCompat.getColor(getContext(), R.color.light));
-        c.drawPaint(p);
-        p.setColor(Color.argb(50, 0, 0, 0));
+        c.drawColor(ContextCompat.getColor(getContext(), R.color.light));
+        /*p.setColor(Color.argb(50, 0, 0, 0));
         if (isTouch) c.drawCircle(mPos[0], mPos[1], pullSize / 2, p);
         p.setColor(Color.argb(25, 0, 0, 0));
-        c.drawCircle(dPos[0], dPos[1], pullSize / 2, p);
+        c.drawCircle(dPos[0], dPos[1], pullSize / 2, p);*/
 
     }
 
@@ -70,7 +67,6 @@ public class DrawCenter extends View {
         myTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (selectedPullCount > 2) selectedPullCount = 0;
                 invalidate();
             }
         }, 0, 25);

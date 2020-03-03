@@ -17,18 +17,10 @@ public class Gem {
     }
 
     public void draw(Canvas c) {
-        if (onTouch(dPos[0], dPos[1]) && selected) {
-            selectedPullCount--;
-            selected = false;
-        }
-        if (onTouch(dPos[0], dPos[1]) && !selected) {
-            selectedPullCount++;
-            selected = true;
-        }
-        if (selectedPullCount == 0)
-            selected = false;
-        if (selected) {
-        }
+        if (onTouch(dPos[0], dPos[1])) selected = true;
+        else selected = false;
+        if(selected);
+
         int plus = 0;
         if (selected) plus = pullSize / 10;
         c.drawBitmap(images.get(image), screenBounds + pullSize * pos[0], screenSpaceForGem + pullSize * pos[1] - plus, null);
