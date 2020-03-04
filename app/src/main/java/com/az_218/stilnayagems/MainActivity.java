@@ -28,10 +28,13 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return false;
             case MotionEvent.ACTION_DOWN:
-                isTouch = true;
                 dPos = new int[]{(int) event.getX(), (int) event.getY()};
+                uPos = new int[]{0, 0};
+                isTouch = true;
                 return true;
             case MotionEvent.ACTION_UP:
+                dPos = new int[]{0, 0};
+                uPos = new int[]{(int) event.getX(), (int) event.getY()};
                 isTouch = false;
                 return true;
             case MotionEvent.ACTION_POINTER_DOWN:

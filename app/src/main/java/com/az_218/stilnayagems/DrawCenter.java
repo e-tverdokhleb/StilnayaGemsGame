@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.az_218.stilnayagems.GemTags.*;
 import static com.az_218.stilnayagems.Storage.*;
 
 public class DrawCenter extends View {
@@ -40,7 +41,7 @@ public class DrawCenter extends View {
     void drawPull(Canvas c, int size) {
         for (int x = 0; x < gems[0].length; x++) {
             for (int y = 0; y < gems[1].length; y++) {
-                c.drawBitmap(images.get("gem_pull"),
+                c.drawBitmap(images.get(gem_pull),
                         screenBounds + size * x,
                         screenSpaceForGem + size * y, null);
             }
