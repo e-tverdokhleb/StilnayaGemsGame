@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.az_218.stilnayagems.Bot.*;
 import static com.az_218.stilnayagems.GemTags.*;
 import static com.az_218.stilnayagems.Storage.*;
 
@@ -56,6 +57,10 @@ public class DrawCenter extends View {
 
     void clearScreen(Canvas c) {
         c.drawColor(ContextCompat.getColor(getContext(), R.color.light));
+        Paint p = new Paint();
+        p.setTextSize(64);
+        c.drawText("Score: " + score, screenBounds, screenBounds + 64, p);
+        c.drawText("Checked: " + checked, screenBounds, screenBounds + 64*2, p);
         /*p.setColor(Color.argb(50, 0, 0, 0));
         if (isTouch) c.drawCircle(mPos[0], mPos[1], pullSize / 2, p);
         p.setColor(Color.argb(25, 0, 0, 0));
@@ -69,7 +74,11 @@ public class DrawCenter extends View {
             @Override
             public void run() {
                 invalidate();
+                if (!checked) {
+                    checkCombos();
+                    checked = true;
+                }
             }
-        }, 0, 25);
+        }, 0, 20);
     }
 }

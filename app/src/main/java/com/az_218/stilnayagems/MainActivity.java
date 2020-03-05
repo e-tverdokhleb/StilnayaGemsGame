@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return false;
             case MotionEvent.ACTION_DOWN:
+                mPos = new int[]{(int) event.getX(), (int) event.getY()};
                 dPos = new int[]{(int) event.getX(), (int) event.getY()};
                 uPos = new int[]{0, 0};
                 isTouch = true;
