@@ -16,7 +16,6 @@ import static com.az_218.stilnayagems.GemTags.*;
 import static com.az_218.stilnayagems.Storage.*;
 
 public class DrawCenter extends View {
-    Timer myTimer;
 
     public DrawCenter(Context con) {
         super(con);
@@ -60,7 +59,7 @@ public class DrawCenter extends View {
         Paint p = new Paint();
         p.setTextSize(64);
         c.drawText("Score: " + score, screenBounds, screenBounds + 64, p);
-        c.drawText("Checked: " + checked, screenBounds, screenBounds + 64*2, p);
+        c.drawText("Checked: " + checked, screenBounds, screenBounds + 64 * 2, p);
         /*p.setColor(Color.argb(50, 0, 0, 0));
         if (isTouch) c.drawCircle(mPos[0], mPos[1], pullSize / 2, p);
         p.setColor(Color.argb(25, 0, 0, 0));
@@ -69,8 +68,7 @@ public class DrawCenter extends View {
     }
 
     public void start() {
-        myTimer = new Timer();
-        myTimer.schedule(new TimerTask() {
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 invalidate();
