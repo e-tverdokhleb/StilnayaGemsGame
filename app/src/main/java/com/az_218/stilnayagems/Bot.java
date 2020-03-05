@@ -17,6 +17,14 @@ public class Bot {
                 return gem_blue;
             case 2:
                 return gem_magenta;
+            case 3:
+                return gem_red;
+            case 4:
+                return gem_aqua;
+            case 5:
+                return gem_orange;
+            case 6:
+                return gem_yellow;
         }
     }
 

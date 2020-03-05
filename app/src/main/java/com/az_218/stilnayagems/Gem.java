@@ -32,7 +32,8 @@ public class Gem {
                     if (gemsGhosts[putPos[0]][putPos[1]]) {
                         gems[putPos[0]][putPos[1]] = new Gem(image, putPos[0], putPos[1]);
                         this.image = gem_null;
-                        generateRandomGems((int) (Math.random()*2)+1);
+                        //     generateRandomGems((int) (Math.random()*2)+1);
+                        generateRandomGems(1);
                     }
                     initGhosts(-1, -1, 0);
                 }
