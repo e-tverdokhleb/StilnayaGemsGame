@@ -10,7 +10,7 @@ import java.util.HashMap;
 import static com.az_218.stilnayagems.GemTags.*;
 
 public class Storage {
-    public static int screenBounds, pullSize, screenSpaceForGem, score;
+    public static int screenBounds, pullSize, screenSpaceForGem, score, text_size;
     public static int[] screenSize, mPos = {0, 0}, dPos = {0, 0}, uPos = {0, 0};
     public static Gem[][] gems = new Gem[7][7];
     public static boolean[][] gemsGhosts = new boolean[gems.length][gems[0].length];
@@ -20,6 +20,8 @@ public class Storage {
     public static HashMap<String, Integer> moveRoles = new HashMap<>();
 
     public static void preStorageGeneration(Activity act) {
+        text_size = 64;
+
         score = 0;
 
         initMoveRoles();

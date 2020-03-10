@@ -113,5 +113,6 @@ public class Bot {
         for (int[] i : toDel) gems[i[0]][i[1]].image = gem_null;
 
         score += toDel.size();
+        checked = true;
     }
 }

@@ -6,10 +6,15 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static com.az_218.stilnayagems.Bot.checkCombos;
 import static com.az_218.stilnayagems.Storage.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +25,18 @@ public class MainActivity extends AppCompatActivity {
         preStorageGeneration(this);
         preGeneration();
         setContentView(draw);
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    if (!checked) checkCombos();
+                    draw.invalidate();
+                } catch (Exception ex) {
+                    Log.println(Log.ERROR, "Draw-Thread", "error in draw-thread");
+                }
+            }
+        }, 0, 20);
     }
 
     @Override
