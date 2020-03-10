@@ -31,7 +31,7 @@ public class Gem {
                     if (gemsGhosts[putPos[0]][putPos[1]]) {
                         gems[putPos[0]][putPos[1]] = new Gem(image, putPos[0], putPos[1]);
                         this.image = gem_null;
-                        gem_spawn_count = (int) (Math.random() * (score / 300)) + 1;
+                        gem_spawn_count = (int) (Math.random() * (score / 200)) + 1;
                         generateRandomGems(gem_spawn_count);
                     }
                     initGhosts(-1, -1, 0);

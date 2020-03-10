@@ -20,10 +20,23 @@ public class DrawCenter extends View {
     @Override
     protected void onDraw(Canvas c) {
         super.onDraw(c);
-        clearScreen(c);
-        drawPull(c, pullSize);
-        drawGemstone(c, pullSize);
-        drawPlaceholders(c);
+        if (gameOver) onGameOver(c);
+        else {
+            clearScreen(c);
+            drawPull(c, pullSize);
+            drawGemstone(c, pullSize);
+            drawPlaceholders(c);
+        }
+    }
+
+    public void onGameOver(Canvas c) {
+        Paint p = new Paint();
+        p.setColor(Color.argb(255, 200, 50, 60));
+        p.setTextSize(text_size*2);
+        c.drawRect(screenBounds * 2, screenBounds * 2, screenSize[0] - screenBounds * 2, screenSize[1] - screenBounds * 2, p);
+        p.setColor(Color.argb(255, 0, 0, 0));
+        p.setTextAlign(Paint.Align.CENTER);
+        c.drawText("Game Over", screenSize[0] / 2, (screenSize[1] - text_size) / 2, p);
     }
 
     void drawPlaceholders(Canvas c) {
@@ -57,12 +70,6 @@ public class DrawCenter extends View {
             }
         }
     }
-
-    /*
-    void drawPlayer(Canvas c, int[] pos) {
-        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.player);
-        c.drawBitmap(Bitmap.createBitmap(b, 0+(int)(Math.random()*100), 0, 100, 100, null, false), pos[0], pos[1], null);
-    }*/
 
     void clearScreen(Canvas c) {
         c.drawColor(ContextCompat.getColor(getContext(), R.color.light));

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
+import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,15 +23,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        preStorageGeneration(this);
+        create(this);
+    }
+
+    void create(AppCompatActivity ac) {
+        preStorageGeneration(ac);
         preGeneration();
         setContentView(draw);
-
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 try {
-                    if (!checked) checkCombos();
+                    if (!(checked && gameOver)) checkCombos();
                     draw.invalidate();
                 } catch (Exception ex) {
                     Log.println(Log.ERROR, "Draw-Thread", "error in draw-thread");
@@ -45,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return false;
             case MotionEvent.ACTION_DOWN:
+                if (gameOver) {
+                    gameOver = false;
+                }
                 mPos = new int[]{(int) event.getX(), (int) event.getY()};
                 dPos = new int[]{(int) event.getX(), (int) event.getY()};
                 uPos = new int[]{0, 0};

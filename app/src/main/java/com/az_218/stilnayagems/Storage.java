@@ -15,13 +15,15 @@ public class Storage {
     public static int[] screenSize, mPos = {0, 0}, dPos = {0, 0}, uPos = {0, 0};
     public static Gem[][] gems = new Gem[7][7];
     public static boolean[][] gemsGhosts = new boolean[gems.length][gems[0].length];
-    public static boolean isTouch, checked;
+    public static boolean isTouch, checked, gameOver;
     public static DrawCenter draw;
     public static HashMap<String, Bitmap> images = new HashMap<>();
     public static HashMap<String, Integer> moveRoles = new HashMap<>();
     public static ArrayList<Placeholder> placeholders = new ArrayList<>();
 
     public static void preStorageGeneration(Activity act) {
+        gameOver = false;
+
         text_size = 64;
 
         score = 0;

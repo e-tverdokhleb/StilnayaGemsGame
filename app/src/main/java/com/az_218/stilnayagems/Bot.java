@@ -8,6 +8,8 @@ import static com.az_218.stilnayagems.GemTags.*;
 import static com.az_218.stilnayagems.Storage.*;
 
 public class Bot {
+    static int loop;
+
     static String getRandomGem() {
         int i = (int) (Math.random() * gems.length * gems[0].length);
         switch (i) {
@@ -37,6 +39,7 @@ public class Bot {
                 gems[x][y] = new Gem(gem_null, x, y);
             }
         }
+        loop = 0;
         generateRandomGems(gems.length + gems[0].length);
     }
 
@@ -51,7 +54,7 @@ public class Bot {
                 }
             }
         }
-        if (num > 0) generateRandomGems(num);
+        if (loop++ < 50 && num > 0) generateRandomGems(num);
     }
 
     public static void initGhosts(int ix, int iy, int moveRole) {
@@ -88,7 +91,17 @@ public class Bot {
         }
     }
 
+    private static boolean checkOverPlaced() {
+        for (Gem[] gb : gems)
+            for (Gem g : gb) {
+                if (g.image.equals(gem_null)) return false;
+            }
+        return true;
+    }
+
     public static void checkCombos() {
+        gameOver = checkOverPlaced();
+
         HashSet<int[]> toDel = new HashSet<>();
         for (int x = 0; x < gems.length; x++) {
             for (int y = 0; y < gems[0].length; y++) {
