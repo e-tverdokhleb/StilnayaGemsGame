@@ -2,6 +2,7 @@ package com.az_218.stilnayagems;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
@@ -27,9 +28,11 @@ public class DrawCenter extends View {
 
     void drawPlaceholders(Canvas c) {
         Paint p = new Paint();
-        p.setTextSize(text_size);
+        p.setTextSize((screenSize[0] - screenBounds * 2) / 5);
         for (int i = 0; i < placeholders.size(); i++) {
             Placeholder pl = placeholders.get(i);
+            int plus = pl.getTime() - pl.getI() * 2;
+            p.setColor(Color.argb(255, 200 + plus, 150 + plus, 50 + plus));
             if (pl.getI() == 0) placeholders.remove(i);
             c.drawText(pl.getText(), pl.getPosX(), pl.getPosY(), p);
         }
