@@ -1,5 +1,7 @@
 package com.az_218.stilnayagems;
 
+import android.util.Log;
+
 import java.util.HashSet;
 
 import static com.az_218.stilnayagems.GemTags.*;
@@ -110,7 +112,12 @@ public class Bot {
                 }
             }
         }
-        for (int[] i : toDel) gems[i[0]][i[1]].image = gem_null;
+        for (int[] i : toDel) {
+            gems[i[0]][i[1]].image = gem_null;
+            Log.println(Log.ERROR, "-----", i[0] + " " + i[1]);
+        }
+        if (toDel.size() > 0)
+            placeholders.add(new Placeholder("+" + toDel.size(), screenSize[0] - screenBounds - text_size * (toDel.size() + "").length(), screenBounds + pullSize, 10, pullSize / 10, text_size));
 
         score += toDel.size();
         checked = true;

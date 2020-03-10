@@ -1,25 +1,20 @@
 package com.az_218.stilnayagems;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static com.az_218.stilnayagems.Bot.*;
 import static com.az_218.stilnayagems.GemTags.*;
 import static com.az_218.stilnayagems.Storage.*;
 
 public class DrawCenter extends View {
 
     public DrawCenter(Context con) {
-        super(con);}
+        super(con);
+    }
 
     @Override
     protected void onDraw(Canvas c) {
@@ -27,6 +22,19 @@ public class DrawCenter extends View {
         clearScreen(c);
         drawPull(c, pullSize);
         drawGemstone(c, pullSize);
+        drawPlaceholders(c);
+    }
+
+    void drawPlaceholders(Canvas c) {
+        Paint p = new Paint();
+        p.setTextSize(text_size);
+        for (int i = 0; i < placeholders.size(); i++) {
+            Placeholder pl = placeholders.get(i);
+            if (pl.getI() == 0) placeholders.remove(i);
+            c.drawText(pl.getText(), pl.getPosX(), pl.getPosY(), p);
+        }
+
+
     }
 
     void drawGemstone(Canvas c, int size) {
@@ -56,10 +64,11 @@ public class DrawCenter extends View {
     void clearScreen(Canvas c) {
         c.drawColor(ContextCompat.getColor(getContext(), R.color.light));
         Paint p = new Paint();
-
         p.setTextSize(text_size);
         c.drawText("Score: " + score, screenBounds, screenBounds + text_size, p);
         c.drawText("Checked: " + checked, screenBounds, screenBounds + text_size * 2, p);
+        c.drawText("Gem spawn count: " + gem_spawn_count, screenBounds, screenBounds + text_size * 3, p);
+        c.drawText("PL count: " + placeholders.size(), screenBounds, screenBounds + text_size * 4, p);
         /*p.setColor(Color.argb(50, 0, 0, 0));
         if (isTouch) c.drawCircle(mPos[0], mPos[1], pullSize / 2, p);
         p.setColor(Color.argb(25, 0, 0, 0));
