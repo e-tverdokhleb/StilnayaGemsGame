@@ -1,5 +1,6 @@
 package com.az_218.stilnayagems;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -71,12 +72,18 @@ public class DrawCenter extends View {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                invalidate();
+                ((Activity) getContext()).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        invalidate();
+                    }
+                });
                 if (!checked) {
                     checkCombos();
                     checked = true;
                 }
             }
         }, 0, 20);
+
     }
 }
