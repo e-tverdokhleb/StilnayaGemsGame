@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
-
 import androidx.core.content.ContextCompat;
 
 import static com.az_218.stilnayagems.GemTags.*;
@@ -32,7 +31,7 @@ public class DrawCenter extends View {
     public void onGameOver(Canvas c) {
         Paint p = new Paint();
         p.setColor(Color.argb(255, 200, 50, 60));
-        p.setTextSize(text_size*2);
+        p.setTextSize(text_size * 2);
         c.drawRect(screenBounds * 2, screenBounds * 2, screenSize[0] - screenBounds * 2, screenSize[1] - screenBounds * 2, p);
         p.setColor(Color.argb(255, 0, 0, 0));
         p.setTextAlign(Paint.Align.CENTER);
@@ -49,8 +48,6 @@ public class DrawCenter extends View {
             if (pl.getI() == 0) placeholders.remove(i);
             c.drawText(pl.getText(), pl.getPosX(), pl.getPosY(), p);
         }
-
-
     }
 
     void drawGemstone(Canvas c, int size) {
@@ -83,7 +80,5 @@ public class DrawCenter extends View {
         if (isTouch) c.drawCircle(mPos[0], mPos[1], pullSize / 2, p);
         p.setColor(Color.argb(25, 0, 0, 0));
         c.drawCircle(dPos[0], dPos[1], pullSize / 2, p);*/
-
     }
-
 }

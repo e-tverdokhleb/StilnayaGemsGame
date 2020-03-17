@@ -1,10 +1,10 @@
 package com.az_218.stilnayagems;
 
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
-import static com.az_218.stilnayagems.Storage.*;
+import static com.az_218.stilnayagems.Storage.getSG;
+import static com.az_218.stilnayagems.Storage.images;
+import static com.az_218.stilnayagems.Storage.moveRoles;
 
 public class GemTags {
     public static final String

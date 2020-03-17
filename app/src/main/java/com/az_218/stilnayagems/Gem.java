@@ -63,6 +63,4 @@ public class Gem {
             return true;
         else return false;
     }
-
-
 }
